@@ -1,0 +1,7 @@
+[package]
+name = "mpi_test"
+version = "0.1.0"
+authors = ["caioh <caioh@DESKTOP-RB1K0R8>"]
+edition = "2018"
+
+[dependencies]
