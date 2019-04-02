@@ -5,3 +5,4 @@ authors = ["caioh <caioh@DESKTOP-RB1K0R8>"]
 edition = "2018"
 
 [dependencies]
+mpi = "0.5"
