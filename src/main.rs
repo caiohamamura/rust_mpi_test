@@ -7,7 +7,7 @@ fn main() {
     let universe = mpi::initialize().unwrap();
     let world = universe.world();
     let rank = world.rank();
-    let size = world.size();
+    let size = world.size() as usize;
     let root_rank = 0;
     let repeat = 2 as usize;
     let root_process = world.process_at_rank(root_rank);
