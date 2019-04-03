@@ -27,6 +27,9 @@ fn main() {
                 Some(tmp)
             })
             .collect();
+        println!("msg: {:?}", msg);
+        println!("counts: {:?}", counts);
+        println!("sipls: {:?}", displs);
         let partition = Partition::new(&msg[..], counts, &displs[..]);
         root_process.scatter_varcount_into_root(&partition, &mut buf[..]);
     } else {
