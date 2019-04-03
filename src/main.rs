@@ -19,7 +19,7 @@ fn main() {
 
     if rank == root_rank {
         let msg: Vec<_> = (0..size*repeat).collect();
-        let counts: Vec<Count> = [2;size];
+        let counts: Vec<Count> = vec![2;size];
         let displs: Vec<Count> = counts
             .iter()
             .scan(0, |acc, &x| {
