@@ -9,7 +9,7 @@ fn main() {
     let universe = mpi::initialize().unwrap();
     let world = universe.world();
 
-    let rank = world.rank();
+    let rank = world.rank() as usize;
     let count = world.size() as usize;
     let repeat : usize = 10;
     let vec_res : Vec<usize> = (rank*repeat..(rank+1)*repeat).collect();
