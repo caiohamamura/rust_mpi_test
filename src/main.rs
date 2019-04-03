@@ -30,13 +30,12 @@ fn main() {
             .collect();
         println!("msg: {:?}", msg);
         println!("counts: {:?}", counts);
-        println!("sipls: {:?}", displs);
+        println!("displs: {:?}", displs);
         let partition = Partition::new(&msg[..], counts, &displs[..]);
         root_process.scatter_varcount_into_root(&partition, &mut buf[..]);
     } else {
         root_process.scatter_varcount_into(&mut buf[..]);
     }
 
-    assert!(buf.iter().zip(0..rank).all(|(&i, j)| i == j));
     println!("Process {} got message: {:?}", rank, buf);
 }
