@@ -13,7 +13,7 @@ fn main() {
     let vec_res : Vec<usize> = (0..10).collect();
 
     if rank == 0 {
-        let mut a = vec![0; count*repeat];
+        let mut a = vec![0usize; count*repeat];
         world.process_at_rank(0).gather_into_root(&(vec_res)[..], &mut a[..]);
         println!("{:?}", a);
     }
