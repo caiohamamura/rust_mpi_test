@@ -16,7 +16,7 @@ fn main() {
 
     if rank == 0 {
         let mut a = vec![0; count*repeat];
-        world.gather_into_root(&(vec_res)[..], &mut a[..]);
+        world.process_at_rank(0).gather_into_root(&(vec_res)[..], &mut a[..]);
         println!("{:?}", a);
     }
     // let a : Vec<i32> = (0..100).collect();
