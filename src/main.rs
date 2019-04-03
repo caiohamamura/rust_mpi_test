@@ -14,7 +14,7 @@ fn main() {
 
     let mut x = vec![0;size as usize];
     if rank == root_rank as usize {
-        let v = (0..size*repeat).filter(|x| rank % 2 == 0).collect::<Vec<_>>();
+        let v = (0..size*repeat).filter(|x| rank % 2 == x % 2).collect::<Vec<_>>();
         root_process.scatter_into_root(&v[..], &mut x[..]);
     } else {
         root_process.scatter_into(&mut x[..]);
