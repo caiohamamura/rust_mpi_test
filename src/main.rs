@@ -10,6 +10,7 @@ fn main() {
 
     let rank = world.rank();
     let size = world.size();
+    let repeat = 2;
 
     let root_rank = 0;
     let root_process = world.process_at_rank(root_rank);
@@ -17,8 +18,8 @@ fn main() {
     let mut buf = vec![0; rank as usize];
 
     if rank == root_rank {
-        let msg: Vec<_> = (0..size).flat_map(|i| (0..i)).collect();
-        let counts: Vec<Count> = (0..size).collect();
+        let msg: Vec<_> = (0..size*repeat).collect();
+        let counts: Vec<Count> = [2;size];
         let displs: Vec<Count> = counts
             .iter()
             .scan(0, |acc, &x| {
