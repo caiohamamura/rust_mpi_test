@@ -10,7 +10,7 @@ fn main() {
     let rank = world.rank() as usize;
     let count = world.size() as usize;
     let repeat : usize = 2;
-    let vec_res = vec![false;repeat];
+    let vec_res = (0usize..10usize).collect();
 
     if rank == 0 {
         let mut a = vec![false; count*repeat];
