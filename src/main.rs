@@ -1,24 +1,22 @@
-#![deny(warnings)]
 extern crate mpi;
 
+use mpi::topology::Rank;
 use mpi::traits::*;
 
 fn main() {
     let universe = mpi::initialize().unwrap();
     let world = universe.world();
+    let rank = world.rank();
+    let size = world.size();
+    let root_rank = 0;
+    let root_process = world.process_at_rank(root_rank);
 
-    let rank = world.rank() as usize;
-    let count = world.size() as usize;
-    let repeat : usize = 10;
-    let vec_res : Vec<usize> = (rank*repeat..(rank+1)*repeat).collect();
-
-    if rank == 0 {
-        let mut a = vec![0usize; count*repeat];
-        world.process_at_rank(0).gather_into_root(&(vec_res)[..], &mut a[..]);
-        println!("{:?}", a);
+    let mut x = 0 as Rank;
+    if rank == root_rank {
+        let v = (0..size).collect::<Vec<_>>();
+        root_process.scatter_into_root(&v[..], &mut x);
     } else {
-        world.process_at_rank(0).gather_into(&(vec_res)[..]);
+        root_process.scatter_into(&mut x);
     }
-    // let a : Vec<i32> = (0..100).collect();
-    // println!("{:?}", a);
+    println!("{}", x);
 }
