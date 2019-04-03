@@ -19,5 +19,5 @@ fn main() {
     } else {
         root_process.scatter_into(&mut x[..]);
     }
-    println!("{}", x);
+    println!("{:?}", x);
 }
