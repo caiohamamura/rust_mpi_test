@@ -12,7 +12,7 @@ fn main() {
     let repeat = 4 as usize;
     let root_process = world.process_at_rank(root_rank);
 
-    let mut x = vec![0;repeat as usize];
+    let mut x = vec![0;size*repeat as usize];
     if rank == root_rank as usize {
         let v = (0..size*repeat).collect::<Vec<_>>();
         root_process.scatter_into_root(&v[..], &mut x[..]);
