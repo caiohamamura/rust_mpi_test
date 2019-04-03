@@ -9,7 +9,7 @@ fn main() {
     let rank = world.rank();
     let size = world.size();
     let root_rank = 0;
-    let repeat = 2;
+    let repeat = 2 as usize;
     let root_process = world.process_at_rank(root_rank);
 
     let mut x = vec![0;repeat];
