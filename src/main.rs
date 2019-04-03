@@ -44,7 +44,7 @@ fn main() {
     }
 
     if rank == root_rank {
-        let mut a = vec![0usize; size as usize * repeat as usize];
+        let mut a = vec![0; size as usize * repeat as usize];
         root_process.gather_into_root(&buf[..], &mut a[..]);
         println!("Root gathered sequence: {:?}.", a);
     } else {
