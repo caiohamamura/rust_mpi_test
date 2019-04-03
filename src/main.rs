@@ -1,3 +1,4 @@
+#![deny(warnings)]
 extern crate mpi;
 
 use mpi::traits::*;
@@ -5,18 +6,17 @@ use mpi::traits::*;
 fn main() {
     let universe = mpi::initialize().unwrap();
     let world = universe.world();
-    let size = world.size();
-    let rank = world.rank();
 
-    match rank {
-        0 => {
-            let msg = vec![4.0f64, 8.0, 15.0];
-            world.process_at_rank(rank + 1).send(&msg[..]);
-        }
-        1 => {
-            let (msg, status) = world.any_process().receive_vec::<f64>();
-            println!("Process {} got message {:?}.\nStatus is: {:?}", rank, msg, status);
-        }
-        _ => unreachable!()
+    let rank = world.rank();
+    let count = world.size() as usize;
+    let repeat : usize = 10;
+    let vec_res : Vec<i32> = (rank*repeat..(rank+1)*repeat).collect();
+
+    if rank == 0 {
+        let mut a = vec![0; count*repeat];
+        world.gather_into_root(&(vec_res)[..], &mut a[..]);
+        println!("{:?}", a);
     }
+    // let a : Vec<i32> = (0..100).collect();
+    // println!("{:?}", a);
 }
