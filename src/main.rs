@@ -40,7 +40,7 @@ fn main() {
     println!("Process {} got message: {:?}", rank, buf);
 
     for i in buf.iter_mut() {
-        *i = 100;
+        *i *= 2;
     }
 
     if rank == root_rank {
