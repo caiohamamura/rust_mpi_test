@@ -38,4 +38,20 @@ fn main() {
     }
 
     println!("Process {} got message: {:?}", rank, buf);
+
+    for i in buf.iter_mut() {
+        *i = 100;
+    }
+
+    if rank == root_rank {
+        let mut a = vec![0usize; size*repeat];
+        root_process.gather_into_root(&buf[..], &mut a[..]);
+        println!("Root gathered sequence: {:?}.", a);
+    } else {
+        root_process.gather_into(&buf[..]);
+    }
+
+    println!("Root gathered sequence: {:?}.", a);
+
+    
 }
