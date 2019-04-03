@@ -15,7 +15,7 @@ fn main() {
     let root_rank = 0;
     let root_process = world.process_at_rank(root_rank);
 
-    let mut buf = vec![0; size as usize];
+    let mut buf = vec![0; repeat as usize];
 
     if rank == root_rank {
         let msg: Vec<_> = (0..size*repeat).collect();
